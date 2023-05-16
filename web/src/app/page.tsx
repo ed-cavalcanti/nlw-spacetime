@@ -2,8 +2,8 @@ export default function Home() {
   return (
     <main className="grid grid-cols-2 min-h-screen">
       {/* left */}
-      <div className="flex flex-col items-start justify-between px-28 py-16">
-
+      <div className="flex flex-col items-start justify-between px-28 py-16 relative overflow-hidden">
+        <div className="absolute right-0 top-1/2 h-[288px] w-[526px] -translate-y-1/2 rounded-full translate-x-1/2 bg-purple-700 opacity-50 blur-full" />
       </div>
 
       {/* rigth */}
