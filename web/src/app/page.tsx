@@ -7,7 +7,11 @@ export default function Home() {
     <main className="grid grid-cols-2 min-h-screen">
       {/* left */}
       <div className="flex flex-col items-start justify-between px-28 py-16 relative overflow-hidden border-r border-white/10 bg-[url(../assets/bg-stars.svg)] bg-cover">
+
+        {/* Blur */}
         <div id="blur"  className="absolute right-0 top-1/2 h-[288px] w-[526px] -translate-y-1/2 rounded-full translate-x-1/2 bg-purple-700 opacity-50 blur-full" />
+
+        {/* Stripes */}
         <div id="stripes" className="absolute right-2 top-0 bottom-0 w-2 bg-stripes " />
 
         {/* SignIn */}
@@ -32,6 +36,20 @@ export default function Home() {
           </div>
           <a className="inline-block rounded-full bg-green-500 px-5 py-3 font-alt text-sm uppercase leading-none text-black hover:bg-green-600" href="">
             CADASTRAR LEMBRANÇA
+          </a>
+        </div>
+
+        {/* Copyright */}
+
+        <div className="text-sm leading-relaxed text-gray-200">
+          Feito com 💜 no NLW da{' '}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-gray-100"
+            href="https://rocketseat.com.br"
+          >
+            Rocketseat
           </a>
         </div>
       </div>
