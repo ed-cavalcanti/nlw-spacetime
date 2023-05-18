@@ -15,6 +15,7 @@ import Stripes from './src/assets/stripes.svg'
 import NlwLogo from './src/assets/nlw-spacetime-logo.svg'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
 import { useEffect } from 'react'
+import { api } from './src/lib/api'
 
 const StyledStripes = styled(Stripes)
 
@@ -52,6 +53,16 @@ export default function App() {
 
     if (response?.type === 'success') {
       const { code } = response.params
+
+      api
+        .post('/register', {
+          code,
+        })
+        .then((response) => {
+          const { token } = response.data
+
+          console.log(token)
+        })
     }
   }, [response])
 
