@@ -13,8 +13,17 @@ import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
 import blurBg from './src/assets/bg-blur.png'
 import Stripes from './src/assets/stripes.svg'
 import NlwLogo from './src/assets/nlw-spacetime-logo.svg'
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
+import { useEffect } from 'react'
 
 const StyledStripes = styled(Stripes)
+
+const discovery = {
+  authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+  tokenEndpoint: 'https://github.com/login/oauth/access_token',
+  revocationEndpoint:
+    'https://github.com/settings/connections/applications/2e7b5846df2a401675fd',
+}
 
 export default function App() {
   const [hasLoadFonts] = useFonts({
@@ -22,6 +31,29 @@ export default function App() {
     Roboto_700Bold,
     BaiJamjuree_700Bold,
   })
+
+  const [request, response, signInWithGithub] = useAuthRequest(
+    {
+      clientId: '2e7b5846df2a401675fd',
+      scopes: ['identity'],
+      redirectUri: makeRedirectUri({
+        scheme: 'spacetime',
+      }),
+    },
+    discovery,
+  )
+
+  useEffect(() => {
+    // console.log(
+    //   makeRedirectUri({
+    //     scheme: 'spacetime',
+    //   }),
+    // )
+
+    if (response?.type === 'success') {
+      const { code } = response.params
+    }
+  }, [response])
 
   if (!hasLoadFonts) {
     return null
@@ -52,6 +84,7 @@ export default function App() {
         <TouchableOpacity
           activeOpacity={0.7}
           className="rounded-full bg-green-500 px-5 py-3"
+          onPress={() => signInWithGithub()}
         >
           <Text className="font-alt text-sm uppercase text-black">
             Cadastrar lembrança
